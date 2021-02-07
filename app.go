@@ -7,8 +7,8 @@ import (
 
 func main() {
 	app := fiber.New()
-	app.Get("/",controllers.MainPage)
-	app.Get("/test",controllers.TestRouter)
+	app.Get("/", controllers.MainPage)
+	app.Get("/test", controllers.TestRouter)
+	app.Get("/ttt", controllers.TestSleep)
 	app.Listen(":4000")
 }
-
