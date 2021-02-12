@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	// runtime.GOMAXPROCS(3)
 	app := fiber.New()
 	app.Get("/", controllers.MainPage)
 	app.Get("/test", controllers.TestRouter)

@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"strconv"
 	"time"
 
@@ -16,6 +17,7 @@ func TestRouter(c *fiber.Ctx) error {
 
 func TestSleep(c *fiber.Ctx) error {
 	cha := make(chan time.Time)
+	fmt.Println("I am in sleep")
 	start := time.Now()
 	go func(cha chan time.Time) {
 		time.Sleep(5 * time.Second)
@@ -26,3 +28,29 @@ func TestSleep(c *fiber.Ctx) error {
 	str := strconv.FormatInt(elapsed, 10)
 	return c.SendString("For the test router " + str)
 }
+
+// func TestSleep(c *fiber.Ctx) error {
+// 	fmt.Println("I am in sleep")
+// 	start := time.Now()
+// 	time.Sleep(5 * time.Second)
+// 	t := time.Now()
+// 	elapsed := t.Sub(start).Milliseconds()
+// 	str := strconv.FormatInt(elapsed, 10)
+// 	return c.SendString("For the test router " + str)
+// }
+
+///////////////////////////////
+// func TestSleep(c *fiber.Ctx) error {
+// 	cha := make(chan time.Time)
+// 	fmt.Println("I am in sleep")
+// 	start := time.Now()
+// 	go stopTime(cha)
+// 	t := <-cha
+// 	elapsed := t.Sub(start).Milliseconds()
+// 	str := strconv.FormatInt(elapsed, 10)
+// 	return c.SendString("For the test router " + str)
+// }
+// func stopTime(cha chan time.Time) {
+// 	time.Sleep(5 * time.Second)
+// 	cha <- time.Now()
+// }
